@@ -17,7 +17,7 @@ public class ModifierEntity implements IModifier {
     @Override
     public double getModified(Player player, Entity entity, double original, int pass) {
         if (pass == 0) {
-            if (entity.getType() == type) {
+            if (entity.getType() == this.type) {
                 return this.baseMoney;
             }
         }
@@ -27,8 +27,8 @@ public class ModifierEntity implements IModifier {
     @Override
     public String modifyName(Entity entity, String original, int pass) {
         if (pass == 0) {
-            if (entity.getType() == type) {
-                return type.getName();
+            if (entity.getType() == this.type) {
+                return this.type.getName();
             }
         }
         return original;

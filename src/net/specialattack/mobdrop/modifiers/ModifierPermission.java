@@ -19,7 +19,7 @@ public class ModifierPermission implements IModifier {
     @Override
     public double getModified(Player player, Entity entity, double original, int pass) {
         if (pass == 1) {
-            if (entity.getType() == type && player.hasPermission("mobdrop.bounty." + permission)) {
+            if (entity.getType() == this.type && player.hasPermission("mobdrop.bounty." + this.permission)) {
                 return original * this.modifier;
             }
         }

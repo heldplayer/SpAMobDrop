@@ -18,7 +18,7 @@ public class ModifierBaby implements IModifier {
     @Override
     public double getModified(Player player, Entity entity, double original, int pass) {
         if (pass == 2) {
-            if (monster) {
+            if (this.monster) {
                 if (entity instanceof Zombie && ((Zombie) entity).isBaby()) {
                     return original * this.modifier;
                 }
@@ -35,7 +35,7 @@ public class ModifierBaby implements IModifier {
     @Override
     public String modifyName(Entity entity, String original, int pass) {
         if (pass == 2) {
-            if (monster) {
+            if (this.monster) {
                 if (entity instanceof Zombie && ((Zombie) entity).isBaby()) {
                     return "Baby " + original;
                 }

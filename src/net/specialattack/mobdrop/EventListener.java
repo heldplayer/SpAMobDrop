@@ -8,9 +8,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-public class KillListener implements Listener {
+public class EventListener implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
@@ -47,6 +49,15 @@ public class KillListener implements Listener {
                 String account = SpAEconomy.getAccountForWorld(player.getWorld());
                 SpAEconomy.instance.accounts.giveMoney(player.getName(), account, money);
             }
+        }
+
+        SpAMobDrop.instance.spawnedMobs.remove(event.getEntity());
+    }
+
+    @EventHandler
+    public void onCreatureSpawn(CreatureSpawnEvent event) {
+        if (event.getSpawnReason() == SpawnReason.SPAWNER) {
+            SpAMobDrop.instance.spawnedMobs.add(event.getEntity());
         }
     }
 

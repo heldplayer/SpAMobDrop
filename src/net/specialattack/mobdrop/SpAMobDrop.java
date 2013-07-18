@@ -13,6 +13,7 @@ import net.specialattack.mobdrop.modifiers.ModifierBaby;
 import net.specialattack.mobdrop.modifiers.ModifierChargedCreeper;
 import net.specialattack.mobdrop.modifiers.ModifierEntity;
 import net.specialattack.mobdrop.modifiers.ModifierPermission;
+import net.specialattack.mobdrop.modifiers.ModifierSpawner;
 import net.specialattack.mobdrop.modifiers.ModifierTime;
 import net.specialattack.mobdrop.modifiers.ModifierZombieVillager;
 
@@ -32,6 +33,7 @@ public class SpAMobDrop extends JavaPlugin {
     private FileConfiguration config;
     private Logger logger;
     public ArrayList<IModifier> moneyModifiers;
+    public ArrayList<LivingEntity> spawnedMobs;
 
     public SpAMobDrop() {
         super();
@@ -59,6 +61,7 @@ public class SpAMobDrop extends JavaPlugin {
         this.config = this.getConfig();
 
         this.moneyModifiers = new ArrayList<IModifier>();
+        this.spawnedMobs = new ArrayList<LivingEntity>();
 
         ConfigurationSection baseBounty = this.config.getConfigurationSection("baseBounty");
         if (baseBounty == null) {
@@ -172,9 +175,16 @@ public class SpAMobDrop extends JavaPlugin {
         witherSkeleton.modifier = this.config.getDouble("modifierWitherSkeleton", 1.0D);
         this.moneyModifiers.add(witherSkeleton);
 
+        ModifierSpawner spawner = new ModifierSpawner();
+        if (!this.config.contains("modifierSpawner")) {
+            this.config.set("modifierSpawner", 0.0D);
+        }
+        spawner.modifier = this.config.getDouble("modifierSpawner", 0.0D);
+        this.moneyModifiers.add(spawner);
+
         this.saveConfig();
 
-        Bukkit.getPluginManager().registerEvents(new KillListener(), this);
+        Bukkit.getPluginManager().registerEvents(new EventListener(), this);
 
         log(this.pdf.getFullName() + " is now enabled!");
 

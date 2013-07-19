@@ -15,6 +15,7 @@ import net.specialattack.mobdrop.modifiers.ModifierEntity;
 import net.specialattack.mobdrop.modifiers.ModifierPermission;
 import net.specialattack.mobdrop.modifiers.ModifierSpawner;
 import net.specialattack.mobdrop.modifiers.ModifierTime;
+import net.specialattack.mobdrop.modifiers.ModifierWitherSkeleton;
 import net.specialattack.mobdrop.modifiers.ModifierZombieVillager;
 
 import org.bukkit.Bukkit;
@@ -140,7 +141,7 @@ public class SpAMobDrop extends JavaPlugin {
         dawn.modifier = this.config.getDouble("modifierDawn", 1.0D);
         this.moneyModifiers.add(dawn);
 
-        ModifierBaby babyAnimal = new ModifierBaby(true);
+        ModifierBaby babyAnimal = new ModifierBaby(false);
         if (!this.config.contains("modifierBabyAnimal")) {
             this.config.set("modifierBabyAnimal", 1.0D);
         }
@@ -168,7 +169,7 @@ public class SpAMobDrop extends JavaPlugin {
         zombieVillager.modifier = this.config.getDouble("modifierZombieVillager", 1.0D);
         this.moneyModifiers.add(zombieVillager);
 
-        ModifierZombieVillager witherSkeleton = new ModifierZombieVillager();
+        ModifierWitherSkeleton witherSkeleton = new ModifierWitherSkeleton();
         if (!this.config.contains("modifierWitherSkeleton")) {
             this.config.set("modifierWitherSkeleton", 1.0D);
         }

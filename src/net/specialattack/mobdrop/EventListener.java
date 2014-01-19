@@ -1,7 +1,6 @@
 
 package net.specialattack.mobdrop;
 
-import me.heldplayer.SpAEconomy.SpAEconomy;
 import net.specialattack.mobdrop.modifiers.IModifier;
 
 import org.bukkit.ChatColor;
@@ -34,20 +33,18 @@ public class EventListener implements Listener {
                     return;
                 }
 
-                player.sendMessage(ChatColor.DARK_GREEN + "You have lost " + ChatColor.WHITE + SpAEconomy.formatMoney(money) + ChatColor.DARK_GREEN + " for killing a " + ChatColor.WHITE + mobName);
+                player.sendMessage(ChatColor.DARK_GREEN + "You have lost " + ChatColor.WHITE + EconomyManager.formatCurrency(money) + ChatColor.DARK_GREEN + " for killing a " + ChatColor.WHITE + mobName);
 
-                String account = SpAEconomy.getAccountForWorld(player.getWorld());
-                SpAEconomy.instance.accounts.giveMoney(player.getName(), account, money);
+                EconomyManager.giveMoney(player.getName(), money);
             }
             else {
                 if (money < 0.01D) {
                     return;
                 }
 
-                player.sendMessage(ChatColor.DARK_GREEN + "You have been awarded " + ChatColor.WHITE + SpAEconomy.formatMoney(money) + ChatColor.DARK_GREEN + " for killing a " + ChatColor.WHITE + mobName);
+                player.sendMessage(ChatColor.DARK_GREEN + "You have been awarded " + ChatColor.WHITE + EconomyManager.formatCurrency(money) + ChatColor.DARK_GREEN + " for killing a " + ChatColor.WHITE + mobName);
 
-                String account = SpAEconomy.getAccountForWorld(player.getWorld());
-                SpAEconomy.instance.accounts.giveMoney(player.getName(), account, money);
+                EconomyManager.giveMoney(player.getName(), money);
             }
         }
 

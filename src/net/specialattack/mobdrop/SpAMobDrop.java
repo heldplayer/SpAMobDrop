@@ -61,6 +61,13 @@ public class SpAMobDrop extends JavaPlugin {
         this.pdf = this.getDescription();
         this.config = this.getConfig();
 
+        try {
+            EconomyManager.class.getName();
+        }
+        catch (Throwable e) {
+            this.getServer().getPluginManager().disablePlugin(this);
+        }
+
         this.moneyModifiers = new ArrayList<IModifier>();
         this.spawnedMobs = new ArrayList<LivingEntity>();
 
@@ -103,7 +110,7 @@ public class SpAMobDrop extends JavaPlugin {
                     ModifierPermission modifier = new ModifierPermission(type, entry.getKey());
 
                     if (!section.contains(type.name())) {
-                        section.set(type.name(), 0.0D);
+                        section.set(type.name(), 1.0D);
                     }
 
                     modifier.modifier = section.getDouble(type.name(), 1.0D);

@@ -24,6 +24,7 @@ public class ModifierEntity implements IModifier {
         return original;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public String modifyName(Entity entity, String original, int pass) {
         if (pass == 0) {

@@ -3,4 +3,4 @@ version: I.dont.care
 description: 
 authors: [heldplayer]
 main: net.specialattack.mobdrop.SpAMobDrop
-depend: [SpACore, Vault]
+depend: [SpACoreBukkit, Vault]

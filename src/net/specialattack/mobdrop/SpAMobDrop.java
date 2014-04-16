@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.specialattack.core.PluginState;
+import net.specialattack.bukkit.core.PluginState;
 import net.specialattack.mobdrop.modifiers.IModifier;
 import net.specialattack.mobdrop.modifiers.ModifierBaby;
 import net.specialattack.mobdrop.modifiers.ModifierChargedCreeper;
